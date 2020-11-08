@@ -1,0 +1,22 @@
+﻿@page "/uncontrollable"
+<h3>Uncontrollable Input Box</h3>
+
+<input value="@_value" @oninput="@NeverChange" @onchange="@NeverChange" />
+
+<h3>Controllable Input Box</h3>
+
+<input value="@_value" @oninput="@AlwaysChange" />
+
+@code {
+    private string _value = "test";
+
+    private void NeverChange(ChangeEventArgs args)
+    {
+        _value = "test";
+    }
+
+    private void AlwaysChange(ChangeEventArgs args)
+    {
+        _value = args.Value as string ?? string.Empty;
+    }
+}
